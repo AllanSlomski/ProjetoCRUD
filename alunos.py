@@ -7,6 +7,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS alunos
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, idade TEXT, turma TEXT)""")
 class Aluno:
     def __init__(self, nome, idade, turma):
+        # self.id = cur.execute('''SELECT id FROM alunos (id)''')
         self.nome = nome
         self.idade = idade
         self.turma = turma
@@ -54,6 +55,11 @@ class Aluno:
             labelNada = Label(janela, text=f'{msg}')
             labelNada.grid(row=1, column=1, padx='15', pady='15')
             return msg
+            print(aluno)
+            return aluno
+
+
+
 
 def criarAluno(nome, idade, turma):
     novoAluno = Aluno(nome, idade, turma)
@@ -69,6 +75,7 @@ def pesquisarAluno(Id):
     novoAluno = Aluno()
     #id.mostrarDados()
     novoAluno.pesquisarDados(Id)
+
 
 def deletarAluno(Id):
     novoAluno = Aluno()

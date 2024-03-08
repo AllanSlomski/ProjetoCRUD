@@ -66,6 +66,7 @@ def deletar():
     botaoVoltar.grid(row=2, column=2, padx='10', pady='10')
 
 
+
 def start():
     limpar_ui()
 
@@ -77,6 +78,7 @@ def start():
 
     botaoDeletar = Button(janela, text=' Deletar ', command=deletar)
     botaoDeletar.grid(row=4, column=3, padx='10', pady='10')
+
 
 
 start()
