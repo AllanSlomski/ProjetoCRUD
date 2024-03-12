@@ -7,20 +7,19 @@ cur.execute("""CREATE TABLE IF NOT EXISTS alunos
                 (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, idade TEXT, turma TEXT)""")
 class Aluno:
     def __init__(self, nome, idade, turma):
-        # self.id = cur.execute('''SELECT id FROM alunos (id)''')
         self.nome = nome
         self.idade = idade
         self.turma = turma
 
-    def mostrarDados(self):
-        print(self.nome, self.idade, self.turma)
 
     def inserirDados(self):
         cur.execute('''INSERT INTO alunos (nome, idade, turma) VALUES (?, ?, ?)''', (self.nome, self.idade, self.turma))
         con.commit()
 
-    def atualizarDados(self):
-        cur.execute('''UPDATE alunos SET (nome, idade, turma) VALUES (?, ?, ?) WHERE (id) VALUES (?)''')
+
+    @staticmethod
+    def atualizarDados(Id, nome, idade, turma):
+        cur.execute('''UPDATE alunos SET nome=?, idade=?, turma=? WHERE id=?''', (nome, idade, turma, Id))
         con.commit()
 
     @staticmethod
@@ -54,30 +53,25 @@ class Aluno:
             janela = Tk()
             labelNada = Label(janela, text=f'{msg}')
             labelNada.grid(row=1, column=1, padx='15', pady='15')
+            print(msg)
             return msg
-            print(aluno)
-            return aluno
-
-
 
 
 def criarAluno(nome, idade, turma):
     novoAluno = Aluno(nome, idade, turma)
-    novoAluno.mostrarDados()
     novoAluno.inserirDados()
 
-def atualizarAluno(id, nome, idade, turma):
-    novoAluno = Aluno(id, nome, idade, turma)
-    novoAluno.mostrarDados()
-    novoAluno.atualizarDados()
+
+def atualizarAluno(Id, nome, idade, turma):
+    novoAluno = Aluno()
+    novoAluno.atualizarDados(Id, nome, idade, turma)
+
 
 def pesquisarAluno(Id):
     novoAluno = Aluno()
-    #id.mostrarDados()
     novoAluno.pesquisarDados(Id)
 
 
 def deletarAluno(Id):
     novoAluno = Aluno()
     novoAluno.deletarDados(Id)
-
